@@ -1,0 +1,10 @@
+name: unet_lightweight
+frames_in: 3
+frames_out: 3
+use_dropout: True
+inp_height: 288
+inp_width: 512
+out_height: 288
+out_width: 512
+rgb_diff: False
+out_scales: [0]

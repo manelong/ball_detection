@@ -1,0 +1,14 @@
+defaults:
+        - _self_
+        - runner: eval_frame_runner
+        - dataset: multiball
+        - model: wasb
+        - dataloader: default
+        - detector: tracknetv2
+        - transform: default
+        - tracker: online
+hydra:
+  run:
+    dir: /mnt/data/xuanyu/WASB-SBDT-main/checkpoint/${now:%Y-%m-%d_%H-%M-%S}
+output_dir:
+seed: 1234

@@ -1,0 +1,24 @@
+name: train_multiball
+device: cuda
+gpus: [0]
+max_epochs: 50
+model_path:
+pretrained_model: /mnt/data/yuxuan/wasb_code/checkpoint/wasb_basketball_best.pth.tar
+fp1_filename:
+best_model_name: best_model.pth
+test:
+  run: False
+  epoch_start: 10
+  epoch_step: 5
+  run_before_train: False
+  run_after_train_with_best: False
+inference_video:
+  run: False
+  epoch_start: 10
+  epoch_step: 5
+  run_before_train: False
+  run_after_train_with_best: False
+find_fp1_epochs: []
+eval:
+  score_threshold: 0.5
+  dist_threshold: 10

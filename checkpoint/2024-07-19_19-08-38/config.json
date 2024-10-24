@@ -1,0 +1,372 @@
+{
+    "output_dir": "/mnt/data/yuxuan/wasb_code/checkpoint/2024-07-19_19-08-38",
+    "seed": 1234,
+    "runner": {
+        "name": "train_multiball",
+        "device": "cuda",
+        "gpus": [
+            0
+        ],
+        "max_epochs": 30,
+        "model_path": null,
+        "pretrained_model": "/mnt/data/yuxuan/wasb_code/checkpoint/wasb_basketball_best.pth.tar",
+        "fp1_filename": null,
+        "best_model_name": "best_model.pth",
+        "test": {
+            "run": false,
+            "epoch_start": 10,
+            "epoch_step": 5,
+            "run_before_train": false,
+            "run_after_train_with_best": false
+        },
+        "inference_video": {
+            "run": false,
+            "epoch_start": 10,
+            "epoch_step": 5,
+            "run_before_train": false,
+            "run_after_train_with_best": false
+        },
+        "find_fp1_epochs": [],
+        "eval": {
+            "score_threshold": 0.5,
+            "dist_threshold": 4
+        }
+    },
+    "dataset": {
+        "name": "multiball",
+        "root_dir": "/mnt/data/yuxuan/wasb_data/multi_ball",
+        "frame_dirname": "pic",
+        "csv_dirname": "label",
+        "ext": ".jpg",
+        "train": {
+            "matches": [
+                "huilongguan_400w_20231225_2100-2130",
+                "huilongguan_400w_20231220_2100-2130_1",
+                "huilongguan_400w_20231223_2100-2130",
+                "jiangnan_bas_001",
+                "jiangnan_bas_002",
+                "jiangnan_bas_004",
+                "jiangnan_bas_005",
+                "xt_bas_001",
+                "xt_bas_002",
+                "xt_bas_003",
+                "weile_bas_001",
+                "weile_bas_002",
+                "xiyu_bas_002",
+                "xiyu_bas_003",
+                "xiyu_bas_004",
+                "xinan_bas_001",
+                "xinan_bas_002",
+                "qiantang_bas_001",
+                "qiantang_bas_002",
+                "menggangwan_bas_001",
+                "menggangwan_bas_002",
+                "lingang_bas_001",
+                "lingang_bas_002",
+                "lingang_bas_004",
+                "jiubao_bas_001",
+                "jiubao_bas_003",
+                "huilongguan_2_1",
+                "huilongguan_2_2"
+            ],
+            "num_clip_ratio": 1.0
+        },
+        "test": {
+            "matches": [
+                "lingang_bas_003"
+            ],
+            "num_clip_ratio": 1.0
+        }
+    },
+    "model": {
+        "name": "hrnet",
+        "frames_in": 3,
+        "frames_out": 3,
+        "inp_height": 288,
+        "inp_width": 512,
+        "out_height": 288,
+        "out_width": 512,
+        "rgb_diff": false,
+        "out_scales": [
+            0
+        ],
+        "MODEL": {
+            "EXTRA": {
+                "FINAL_CONV_KERNEL": 1,
+                "PRETRAINED_LAYERS": [
+                    "*"
+                ],
+                "STEM": {
+                    "INPLANES": 64,
+                    "STRIDES": [
+                        1,
+                        1
+                    ]
+                },
+                "STAGE1": {
+                    "NUM_MODULES": 1,
+                    "NUM_BRANCHES": 1,
+                    "BLOCK": "BOTTLENECK",
+                    "NUM_BLOCKS": [
+                        1
+                    ],
+                    "NUM_CHANNELS": [
+                        32
+                    ],
+                    "FUSE_METHOD": "SUM"
+                },
+                "STAGE2": {
+                    "NUM_MODULES": 1,
+                    "NUM_BRANCHES": 2,
+                    "BLOCK": "BASIC",
+                    "NUM_BLOCKS": [
+                        2,
+                        2
+                    ],
+                    "NUM_CHANNELS": [
+                        16,
+                        32
+                    ],
+                    "FUSE_METHOD": "SUM"
+                },
+                "STAGE3": {
+                    "NUM_MODULES": 1,
+                    "NUM_BRANCHES": 3,
+                    "BLOCK": "BASIC",
+                    "NUM_BLOCKS": [
+                        2,
+                        2,
+                        2
+                    ],
+                    "NUM_CHANNELS": [
+                        16,
+                        32,
+                        64
+                    ],
+                    "FUSE_METHOD": "SUM"
+                },
+                "STAGE4": {
+                    "NUM_MODULES": 1,
+                    "NUM_BRANCHES": 4,
+                    "BLOCK": "BASIC",
+                    "NUM_BLOCKS": [
+                        2,
+                        2,
+                        2,
+                        2
+                    ],
+                    "NUM_CHANNELS": [
+                        16,
+                        32,
+                        64,
+                        128
+                    ],
+                    "FUSE_METHOD": "SUM"
+                },
+                "DECONV": {
+                    "NUM_DECONVS": 0,
+                    "KERNEL_SIZE": [],
+                    "NUM_BASIC_BLOCKS": 2
+                }
+            },
+            "INIT_WEIGHTS": true
+        }
+    },
+    "teacher_model": {
+        "name": "hrnet",
+        "frames_in": 3,
+        "frames_out": 3,
+        "inp_height": 288,
+        "inp_width": 512,
+        "out_height": 288,
+        "out_width": 512,
+        "rgb_diff": false,
+        "out_scales": [
+            0
+        ],
+        "MODEL": {
+            "EXTRA": {
+                "FINAL_CONV_KERNEL": 1,
+                "PRETRAINED_LAYERS": [
+                    "*"
+                ],
+                "STEM": {
+                    "INPLANES": 64,
+                    "STRIDES": [
+                        1,
+                        1
+                    ]
+                },
+                "STAGE1": {
+                    "NUM_MODULES": 1,
+                    "NUM_BRANCHES": 1,
+                    "BLOCK": "BOTTLENECK",
+                    "NUM_BLOCKS": [
+                        1
+                    ],
+                    "NUM_CHANNELS": [
+                        32
+                    ],
+                    "FUSE_METHOD": "SUM"
+                },
+                "STAGE2": {
+                    "NUM_MODULES": 1,
+                    "NUM_BRANCHES": 2,
+                    "BLOCK": "BASIC",
+                    "NUM_BLOCKS": [
+                        2,
+                        2
+                    ],
+                    "NUM_CHANNELS": [
+                        16,
+                        32
+                    ],
+                    "FUSE_METHOD": "SUM"
+                },
+                "STAGE3": {
+                    "NUM_MODULES": 1,
+                    "NUM_BRANCHES": 3,
+                    "BLOCK": "BASIC",
+                    "NUM_BLOCKS": [
+                        2,
+                        2,
+                        2
+                    ],
+                    "NUM_CHANNELS": [
+                        16,
+                        32,
+                        64
+                    ],
+                    "FUSE_METHOD": "SUM"
+                },
+                "STAGE4": {
+                    "NUM_MODULES": 1,
+                    "NUM_BRANCHES": 4,
+                    "BLOCK": "BASIC",
+                    "NUM_BLOCKS": [
+                        2,
+                        2,
+                        2,
+                        2
+                    ],
+                    "NUM_CHANNELS": [
+                        16,
+                        32,
+                        64,
+                        128
+                    ],
+                    "FUSE_METHOD": "SUM"
+                },
+                "DECONV": {
+                    "NUM_DECONVS": 0,
+                    "KERNEL_SIZE": [],
+                    "NUM_BASIC_BLOCKS": 2
+                }
+            },
+            "INIT_WEIGHTS": true
+        }
+    },
+    "dataloader": {
+        "train": true,
+        "test": true,
+        "train_clip": false,
+        "test_clip": false,
+        "sampler": {
+            "name": "random",
+            "train_batch_size": 8,
+            "train_shuffle_batch": true,
+            "train_drop_last": true,
+            "test_batch_size": 8,
+            "test_shuffle_batch": false,
+            "test_drop_last": false,
+            "inference_video_batch_size": 8,
+            "inference_video_shuffle_batch": false,
+            "inference_video_drop_last": false
+        },
+        "train_num_workers": 12,
+        "test_num_workers": 4,
+        "inference_video_num_workers": 4,
+        "heatmap": {
+            "name": "binary_fixed_size_multi",
+            "sigmas": [
+                2.5
+            ],
+            "mags": [
+                1.0
+            ],
+            "min_value": 0.6
+        }
+    },
+    "detector": {
+        "name": "tracknetv2",
+        "model_path": null,
+        "step": 3,
+        "postprocessor": {
+            "name": "tracknetv2",
+            "score_threshold": 0.5,
+            "scales": [
+                0
+            ],
+            "blob_det_method": "concomp",
+            "use_hm_weight": true
+        }
+    },
+    "transform": {
+        "train": {
+            "color_jitter": {
+                "p": 0.5,
+                "brightness": 0.1,
+                "contrast": 0.1,
+                "saturation": 0.1,
+                "hue": 0.1
+            },
+            "horizontal_flip": {
+                "p": 0.5
+            },
+            "crop": {
+                "max_rescale": 0.125,
+                "p": 0.0
+            }
+        },
+        "test": {
+            "color_jitter": {
+                "p": 0.0,
+                "brightness": 0.0,
+                "contrast": 0.0,
+                "saturation": 0.0,
+                "hue": 0.0
+            },
+            "horizontal_flip": {
+                "p": 0.0
+            },
+            "crop": {
+                "p": 0.0
+            }
+        }
+    },
+    "tracker": {
+        "name": "online",
+        "max_disp": 300
+    },
+    "loss": {
+        "name": "heatmap",
+        "sub_name": "quality_focal",
+        "auto_weight": false,
+        "scales": [
+            0
+        ],
+        "beta": 2.0
+    },
+    "optimizer": {
+        "name": "adam",
+        "learning_rate": 0.0001,
+        "weight_decay": 1e-05,
+        "scheduler": {
+            "name": "multistep",
+            "stepsize": [
+                10
+            ],
+            "gamma": 0.5
+        }
+    }
+}

@@ -1,0 +1,12 @@
+defaults:
+        - _self_
+name: tracknetv2
+model_path: ../checkpoint\2024-07-19_19-08-38\checkpoint_ep30.pth.tar
+step: 3
+postprocessor:
+  name: tracknetv2
+  score_threshold: 0.5
+  scales: [0]
+  blob_det_method: concomp
+  use_hm_weight: True
+

@@ -1,0 +1,23 @@
+name: soccer_net
+root_dir: E:\SoccerNet\tracking
+frame_dirname: train_pic
+csv_dirname: label
+ext: '.jpg'
+train:
+  matches: [
+            ]
+  num_clip_ratio: 1.0
+  
+test:
+## 生成从SNMOT-060, SNMOT-061 到 SNMOT-170的测试集
+  matches: [SNMOT-060,SNMOT-061 ,SNMOT-062 ,SNMOT-063 ,SNMOT-064 ,SNMOT-065 ,SNMOT-066 ,SNMOT-067 ,SNMOT-068 ,SNMOT-069 ,
+            SNMOT-070 ,SNMOT-071 ,SNMOT-072 ,SNMOT-073 ,SNMOT-074 ,SNMOT-075 ,SNMOT-076 ,SNMOT-077 ,SNMOT-097 ,SNMOT-098 ,SNMOT-099 ,
+            SNMOT-100 ,SNMOT-101 ,SNMOT-102 ,SNMOT-103 ,SNMOT-104 ,SNMOT-105 ,SNMOT-106 ,SNMOT-107 ,SNMOT-108 ,SNMOT-109 ,
+            SNMOT-110 ,SNMOT-111 ,SNMOT-112 ,SNMOT-113 ,SNMOT-114 ,SNMOT-115 ,
+            SNMOT-151 ,SNMOT-152 ,SNMOT-153 ,SNMOT-154 ,SNMOT-155 ,SNMOT-156 ,SNMOT-157 ,SNMOT-158 ,SNMOT-159 ,
+            SNMOT-160 ,SNMOT-161 ,SNMOT-162 ,SNMOT-163 ,SNMOT-164 ,SNMOT-165 ,SNMOT-166 ,SNMOT-167 ,SNMOT-168 ,SNMOT-169 ,
+            SNMOT-170]
+
+              
+  num_clip_ratio: 1.0
+

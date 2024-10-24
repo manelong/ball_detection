@@ -1,0 +1,11 @@
+name: volleyball
+root_dir: /mnt/data/yuxuan/wasb_data/multi_ball
+frame_dirname: data-V2-batch1_new1
+csv_dirname: data-V2-batch1_total_single_anno
+ext: '.jpg'
+train: # cf. https://github.com/wjchaoGit/Group-Activity-Recognition/blob/master/config.py
+  matches: [huilongguan_400w_20231220_2100-2130_1,huilongguan_400w_20231221_2100-2130,huilongguan_400w_20231223_2100-2130,huilongguan_400w_20231225_2100-2130]
+  num_clip_ratio: 1.0
+test: # cf. https://github.com/wjchaoGit/Group-Activity-Recognition/blob/master/config.py
+  matches: [huilongguan_400w_20231220_2100-2130_1]
+  num_clip_ratio: 1.0

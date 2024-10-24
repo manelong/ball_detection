@@ -1,0 +1,13 @@
+name: basketball
+root_dir: /mnt/data/yuxuan/wasb_data/multi_ball
+video_dirname: videos
+anno_dirname: ball-annos
+img_ext: '.png'
+#video_ext: '.avi'
+train:
+  videos:
+  num_clip_ratio: 1.0
+test:
+  videos: [] # from ../datasets/basketball/test_video_ids
+  num_clip_ratio: 1.0
+

@@ -1,0 +1,35 @@
+name: multiball
+root_dir: /mnt/data/yuxuan/wasb_data/multi_ball
+frame_dirname: pic
+csv_dirname: label_full
+ext: '.jpg'
+train:
+  matches: [huilongguan_1_2,huilongguan_2_1,huilongguan_2_2,
+            huilongguan_400w_20231225_2100-2130,huilongguan_400w_20231220_2100-2130_1,huilongguan_400w_20231223_2100-2130,
+            jiangnan_bas_001,jiangnan_bas_002,jiangnan_bas_003,jiangnan_bas_004,jiangnan_bas_006,
+            jiubao_bas_001,jiubao_bas_003,
+            lingang_bas_001,lingang_bas_002,lingang_bas_004,
+            menggangwan_bas_001,menggangwan_bas_002,
+            qiantang_bas_001,qiantang_bas_002,qiantang_bas_004,
+            weile_bas_001,weile_bas_002,
+            xinan_bas_001,xinan_bas_002,
+            xiyu_bas_001,xiyu_bas_002,xiyu_bas_004,
+            xt_bas_001,xt_bas_002,xt_bas_003, 
+            menggangwan_bas_001_copy,menggangwan_bas_002_copy,
+            jiangnan_bas_001_copy,jiangnan_bas_002_copy,jiangnan_bas_003_copy,jiangnan_bas_004_copy,jiangnan_bas_006_copy,
+            xiyu_bas_001_copy,xiyu_bas_002_copy,xiyu_bas_004_copy,
+            ]
+  num_clip_ratio: 1.0
+  
+test:
+  matches: [huilongguan_1_1,
+            huilongguan_400w_20231221_2100-2130,
+            jiangnan_bas_005,
+            jiubao_bas_002,
+            lingang_bas_003,
+            qiantang_bas_003,
+            xiyu_bas_003,
+            xt_bas_004,
+              ]
+  num_clip_ratio: 1.0
+

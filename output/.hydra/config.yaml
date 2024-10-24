@@ -1,0 +1,225 @@
+output_dir: E:\Project\ball_detection\share_wasb\share_wasb\output
+video_dir: E:\Project\ball_detection\share_wasb\share_wasb\test_data
+seed: 1234
+runner:
+  name: eval
+  device: cuda
+  gpus:
+  - 0
+  vis_result: true
+  vis_hm: false
+  vis_traj: false
+  model_path: ../checkpoint\2024-07-19_19-08-38\checkpoint_ep30.pth.tar
+  split: test
+  fp1_filename: null
+  eval:
+    score_threshold: 0.5
+    dist_threshold: 10
+dataset:
+  name: soccer_net
+  root_dir: E:\SoccerNet\tracking
+  frame_dirname: train_pic
+  csv_dirname: label
+  ext: .jpg
+  train:
+    matches: []
+    num_clip_ratio: 1.0
+  test:
+    matches:
+    - SNMOT-060
+    - SNMOT-061
+    - SNMOT-062
+    - SNMOT-063
+    - SNMOT-064
+    - SNMOT-065
+    - SNMOT-066
+    - SNMOT-067
+    - SNMOT-068
+    - SNMOT-069
+    - SNMOT-070
+    - SNMOT-071
+    - SNMOT-072
+    - SNMOT-073
+    - SNMOT-074
+    - SNMOT-075
+    - SNMOT-076
+    - SNMOT-077
+    - SNMOT-097
+    - SNMOT-098
+    - SNMOT-099
+    - SNMOT-100
+    - SNMOT-101
+    - SNMOT-102
+    - SNMOT-103
+    - SNMOT-104
+    - SNMOT-105
+    - SNMOT-106
+    - SNMOT-107
+    - SNMOT-108
+    - SNMOT-109
+    - SNMOT-110
+    - SNMOT-111
+    - SNMOT-112
+    - SNMOT-113
+    - SNMOT-114
+    - SNMOT-115
+    - SNMOT-151
+    - SNMOT-152
+    - SNMOT-153
+    - SNMOT-154
+    - SNMOT-155
+    - SNMOT-156
+    - SNMOT-157
+    - SNMOT-158
+    - SNMOT-159
+    - SNMOT-160
+    - SNMOT-161
+    - SNMOT-162
+    - SNMOT-163
+    - SNMOT-164
+    - SNMOT-165
+    - SNMOT-166
+    - SNMOT-167
+    - SNMOT-168
+    - SNMOT-169
+    - SNMOT-170
+    num_clip_ratio: 1.0
+model:
+  name: hrnet
+  frames_in: 3
+  frames_out: 3
+  inp_height: 288
+  inp_width: 512
+  out_height: 288
+  out_width: 512
+  rgb_diff: false
+  out_scales:
+  - 0
+  MODEL:
+    EXTRA:
+      FINAL_CONV_KERNEL: 1
+      PRETRAINED_LAYERS:
+      - '*'
+      STEM:
+        INPLANES: 64
+        STRIDES:
+        - 1
+        - 1
+      STAGE1:
+        NUM_MODULES: 1
+        NUM_BRANCHES: 1
+        BLOCK: BOTTLENECK
+        NUM_BLOCKS:
+        - 1
+        NUM_CHANNELS:
+        - 32
+        FUSE_METHOD: SUM
+      STAGE2:
+        NUM_MODULES: 1
+        NUM_BRANCHES: 2
+        BLOCK: BASIC
+        NUM_BLOCKS:
+        - 2
+        - 2
+        NUM_CHANNELS:
+        - 16
+        - 32
+        FUSE_METHOD: SUM
+      STAGE3:
+        NUM_MODULES: 1
+        NUM_BRANCHES: 3
+        BLOCK: BASIC
+        NUM_BLOCKS:
+        - 2
+        - 2
+        - 2
+        NUM_CHANNELS:
+        - 16
+        - 32
+        - 64
+        FUSE_METHOD: SUM
+      STAGE4:
+        NUM_MODULES: 1
+        NUM_BRANCHES: 4
+        BLOCK: BASIC
+        NUM_BLOCKS:
+        - 2
+        - 2
+        - 2
+        - 2
+        NUM_CHANNELS:
+        - 16
+        - 32
+        - 64
+        - 128
+        FUSE_METHOD: SUM
+      DECONV:
+        NUM_DECONVS: 0
+        KERNEL_SIZE: []
+        NUM_BASIC_BLOCKS: 2
+    INIT_WEIGHTS: true
+dataloader:
+  train: true
+  test: true
+  train_clip: false
+  test_clip: false
+  sampler:
+    name: random
+    train_batch_size: 8
+    train_shuffle_batch: true
+    train_drop_last: true
+    test_batch_size: 8
+    test_shuffle_batch: false
+    test_drop_last: false
+    inference_video_batch_size: 8
+    inference_video_shuffle_batch: false
+    inference_video_drop_last: false
+  train_num_workers: 12
+  test_num_workers: 12
+  inference_video_num_workers: 12
+  heatmap:
+    name: binary_fixed_size_multi
+    sigmas:
+    - 3.0
+    mags:
+    - 1.0
+    min_value: 0.6
+detector:
+  name: tracknetv2
+  model_path: ../checkpoint\2024-07-19_19-08-38\checkpoint_ep30.pth.tar
+  step: 3
+  postprocessor:
+    name: tracknetv2
+    score_threshold: 0.5
+    scales:
+    - 0
+    blob_det_method: concomp
+    use_hm_weight: true
+transform:
+  train:
+    color_jitter:
+      p: 0.0
+      brightness: 0.0
+      contrast: 0.0
+      saturation: 0.0
+      hue: 0.0
+    horizontal_flip:
+      p: 0.0
+    crop:
+      p: 0.0
+      max_rescale: 0.125
+  test:
+    color_jitter:
+      p: 0.0
+      brightness: 0.0
+      contrast: 0.0
+      saturation: 0.0
+      hue: 0.0
+    horizontal_flip:
+      p: 0.0
+    crop:
+      p: 0.0
+      max_rescale: 0.125
+tracker:
+  name: online
+  max_disp: 300

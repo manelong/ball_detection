@@ -1,0 +1,8 @@
+name: eval_frame
+device: cuda
+gpus: [0]
+pretrained_model: /mnt/data/yuxuan/wasb_code/checkpoint/2024-08-01_10-29-59/checkpoint_ep50.pth.tar
+fp1_filename:
+eval:
+  score_threshold: 0.5
+  dist_threshold: 10

@@ -1,0 +1,16 @@
+defaults:
+        - _self_
+        - runner: train_multiball
+        - dataset: multiball_new_spilt
+        - model: wasb
+        - dataloader: default
+        - detector: tracknetv2
+        - transform: color_hflip
+        - tracker: online
+        - loss: hm_qfl
+        - optimizer: adam_multistep
+hydra:
+  run:
+    dir: /mnt/data/yuxuan/wasb_code/checkpoint/${now:%Y-%m-%d_%H-%M-%S}
+output_dir:
+seed: 1234

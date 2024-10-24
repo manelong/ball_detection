@@ -1,0 +1,16 @@
+defaults:
+        - _self_
+        - runner: eval
+        - dataset: soccer_net
+        - model: wasb
+        - dataloader: default
+        - detector: tracknetv2
+        - transform: default
+        - tracker: online
+hydra:
+  run:
+    dir: E:\Project\ball_detection\share_wasb\share_wasb\output
+output_dir: E:\Project\ball_detection\share_wasb\share_wasb\output
+video_dir : E:\Project\ball_detection\share_wasb\share_wasb\test_data
+# video_dir : /mnt/data/yuxuan/wasb_test/online_badcase
+seed: 1234

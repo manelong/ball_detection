@@ -1,0 +1,17 @@
+defaults:
+        - _self_
+        - runner: eval
+        - dataset: multiball
+        - model: wasb
+        - dataloader: default
+        - detector: tracknetv2
+        - transform: default
+        - tracker: online
+hydra:
+  run:
+    dir: /mnt/data/yuxuan/wasb_test/val_checkpoint/${now:%Y-%m-%d_%H-%M-%S}
+output_dir: /mnt/data/yuxuan/wasb_test/val_checkpoint/${now:%Y-%m-%d_%H-%M-%S}
+video_dir : /mnt/data/yuxuan/wasb_test/test_dataset
+# video_dir : /mnt/data/yuxuan/wasb_test/online_badcase
+seed: 1234
+
